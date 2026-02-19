@@ -1,6 +1,6 @@
 {
-  "updated": "2026-02-19T14:52:57.308510Z",
-  "universe_count": 46,
+  "updated": "2026-02-19T15:12:47.969001Z",
+  "universe_count": 120,
   "stocks": [
     {
       "rank": 1,
@@ -9,8 +9,8 @@
       "sector": "Financial Services",
       "volatility": 20.28,
       "momentum": 61.39,
-      "div_yield": 582.0,
-      "score": 79
+      "div_yield": 5.91,
+      "score": 89
     },
     {
       "rank": 2,
@@ -19,58 +19,58 @@
       "sector": "Communication Services",
       "volatility": 19.65,
       "momentum": 35.96,
-      "div_yield": 469.0,
-      "score": 73
+      "div_yield": 4.59,
+      "score": 86
     },
     {
       "rank": 3,
-      "ticker": "NDA-SE",
-      "name": "Nordea Bank Abp",
-      "sector": "Financial Services",
-      "volatility": 20.69,
-      "momentum": 38.26,
-      "div_yield": 596.0,
-      "score": 70
-    },
-    {
-      "rank": 4,
-      "ticker": "INDU-C",
-      "name": "Industrivärden, AB ser. C",
-      "sector": "Financial Services",
-      "volatility": 20.08,
-      "momentum": 21.06,
-      "div_yield": 182.0,
-      "score": 53
-    },
-    {
-      "rank": 5,
       "ticker": "SHB-A",
       "name": "Svenska Handelsbanken ser. A",
       "sector": "Financial Services",
       "volatility": 21.67,
       "momentum": 30.44,
-      "div_yield": 562.0,
-      "score": 51
+      "div_yield": 5.66,
+      "score": 74
     },
     {
-      "rank": 6,
+      "rank": 4,
+      "ticker": "AXFO",
+      "name": "Axfood AB",
+      "sector": "Consumer Defensive",
+      "volatility": 21.07,
+      "momentum": 35.91,
+      "div_yield": 2.69,
+      "score": 70
+    },
+    {
+      "rank": 5,
       "ticker": "SEB-A",
       "name": "Skandinaviska Enskilda Banken s",
       "sector": "Financial Services",
       "volatility": 21.78,
       "momentum": 33.69,
-      "div_yield": 435.0,
-      "score": 35
+      "div_yield": 4.39,
+      "score": 68
+    },
+    {
+      "rank": 6,
+      "ticker": "INDU-C",
+      "name": "Industrivärden, AB ser. C",
+      "sector": "Financial Services",
+      "volatility": 20.08,
+      "momentum": 21.06,
+      "div_yield": 1.8,
+      "score": 65
     },
     {
       "rank": 7,
-      "ticker": "INVE-B",
-      "name": "Investor AB ser. B",
+      "ticker": "NDA-SE",
+      "name": "Nordea Bank Abp",
       "sector": "Financial Services",
-      "volatility": 20.46,
-      "momentum": 13.17,
-      "div_yield": 152.0,
-      "score": 27
+      "volatility": 20.69,
+      "momentum": 38.26,
+      "div_yield": 0.55,
+      "score": 62
     },
     {
       "rank": 8,
@@ -79,28 +79,28 @@
       "sector": "Consumer Defensive",
       "volatility": 23.13,
       "momentum": 16.69,
-      "div_yield": 514.0,
-      "score": 25
+      "div_yield": 5.13,
+      "score": 59
     },
     {
       "rank": 9,
-      "ticker": "ASSA-B",
-      "name": "ASSA ABLOY AB ser. B",
-      "sector": "Industrials",
-      "volatility": 21.7,
-      "momentum": 13.9,
-      "div_yield": 170.0,
-      "score": 20
+      "ticker": "HUFV-A",
+      "name": "Hufvudstaden AB ser. A",
+      "sector": "Real Estate",
+      "volatility": 19.45,
+      "momentum": 3.25,
+      "div_yield": 2.28,
+      "score": 56
     },
     {
       "rank": 10,
-      "ticker": "ALFA",
-      "name": "Alfa Laval AB",
-      "sector": "Industrials",
-      "volatility": 21.69,
-      "momentum": 8.13,
-      "div_yield": 163.0,
-      "score": 14
+      "ticker": "SCST",
+      "name": "Scandi Standard AB",
+      "sector": "Consumer Defensive",
+      "volatility": 24.12,
+      "momentum": 26.5,
+      "div_yield": 2.59,
+      "score": 55
     }
   ]
 }
