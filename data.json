@@ -1,0 +1,106 @@
+{
+  "updated": "2026-02-19T14:52:57.308510Z",
+  "universe_count": 46,
+  "stocks": [
+    {
+      "rank": 1,
+      "ticker": "SWED-A",
+      "name": "Swedbank AB ser A",
+      "sector": "Financial Services",
+      "volatility": 20.28,
+      "momentum": 61.39,
+      "div_yield": 582.0,
+      "score": 79
+    },
+    {
+      "rank": 2,
+      "ticker": "TELIA",
+      "name": "Telia Company AB",
+      "sector": "Communication Services",
+      "volatility": 19.65,
+      "momentum": 35.96,
+      "div_yield": 469.0,
+      "score": 73
+    },
+    {
+      "rank": 3,
+      "ticker": "NDA-SE",
+      "name": "Nordea Bank Abp",
+      "sector": "Financial Services",
+      "volatility": 20.69,
+      "momentum": 38.26,
+      "div_yield": 596.0,
+      "score": 70
+    },
+    {
+      "rank": 4,
+      "ticker": "INDU-C",
+      "name": "Industrivärden, AB ser. C",
+      "sector": "Financial Services",
+      "volatility": 20.08,
+      "momentum": 21.06,
+      "div_yield": 182.0,
+      "score": 53
+    },
+    {
+      "rank": 5,
+      "ticker": "SHB-A",
+      "name": "Svenska Handelsbanken ser. A",
+      "sector": "Financial Services",
+      "volatility": 21.67,
+      "momentum": 30.44,
+      "div_yield": 562.0,
+      "score": 51
+    },
+    {
+      "rank": 6,
+      "ticker": "SEB-A",
+      "name": "Skandinaviska Enskilda Banken s",
+      "sector": "Financial Services",
+      "volatility": 21.78,
+      "momentum": 33.69,
+      "div_yield": 435.0,
+      "score": 35
+    },
+    {
+      "rank": 7,
+      "ticker": "INVE-B",
+      "name": "Investor AB ser. B",
+      "sector": "Financial Services",
+      "volatility": 20.46,
+      "momentum": 13.17,
+      "div_yield": 152.0,
+      "score": 27
+    },
+    {
+      "rank": 8,
+      "ticker": "DUNI",
+      "name": "Duni AB",
+      "sector": "Consumer Defensive",
+      "volatility": 23.13,
+      "momentum": 16.69,
+      "div_yield": 514.0,
+      "score": 25
+    },
+    {
+      "rank": 9,
+      "ticker": "ASSA-B",
+      "name": "ASSA ABLOY AB ser. B",
+      "sector": "Industrials",
+      "volatility": 21.7,
+      "momentum": 13.9,
+      "div_yield": 170.0,
+      "score": 20
+    },
+    {
+      "rank": 10,
+      "ticker": "ALFA",
+      "name": "Alfa Laval AB",
+      "sector": "Industrials",
+      "volatility": 21.69,
+      "momentum": 8.13,
+      "div_yield": 163.0,
+      "score": 14
+    }
+  ]
+}
