@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swedish Low-Vol Stock Screener — Van Vliet Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e0f;
+    --surface: #111618;
+    --border: #1e2628;
+    --accent: #00e5a0;
+    --accent2: #005f44;
+    --warn: #f0b429;
+    --danger: #e05252;
+    --text: #d4dde0;
+    --muted: #5a6e74;
+    --heading: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  header {
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .logo-area h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    color: var(--heading);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .logo-area h1 span {
+    color: var(--accent);
+  }
+
+  .logo-area p {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .meta-box {
+    text-align: right;
+  }
+
+  .meta-box .last-updated {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,229,160,0.08);
+    border: 1px solid rgba(0,229,160,0.2);
+    color: var(--accent);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Strategy pills */
+  .strategy-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .pill-icon {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .pill-icon.green { background: var(--accent); }
+  .pill-icon.yellow { background: var(--warn); }
+  .pill-icon.blue { background: #60a5fa; }
+
+  .pill span { color: var(--muted); }
+  .pill strong { color: var(--text); }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+  }
+
+  .stat-card:hover::before { transform: scaleX(1); }
+
+  .stat-label {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--heading);
+  }
+
+  .stat-value.green { color: var(--accent); }
+  .stat-value.yellow { color: var(--warn); }
+
+  /* Table */
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .table-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.5px;
+  }
+
+  .exchange-tag {
+    font-size: 10px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead tr {
+    background: var(--surface);
+    border-bottom: 2px solid var(--accent2);
+  }
+
+  th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  th.right { text-align: right; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  tbody tr:nth-child(1) { animation-delay: 0.05s; }
+  tbody tr:nth-child(2) { animation-delay: 0.10s; }
+  tbody tr:nth-child(3) { animation-delay: 0.15s; }
+  tbody tr:nth-child(4) { animation-delay: 0.20s; }
+  tbody tr:nth-child(5) { animation-delay: 0.25s; }
+  tbody tr:nth-child(6) { animation-delay: 0.30s; }
+  tbody tr:nth-child(7) { animation-delay: 0.35s; }
+  tbody tr:nth-child(8) { animation-delay: 0.40s; }
+  tbody tr:nth-child(9) { animation-delay: 0.45s; }
+  tbody tr:nth-child(10) { animation-delay: 0.50s; }
+
+  tbody tr:hover { background: rgba(0,229,160,0.03); }
+
+  td {
+    padding: 16px 16px;
+    font-size: 13px;
+    vertical-align: middle;
+  }
+
+  td.right { text-align: right; }
+
+  .rank {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--border);
+  }
+
+  tbody tr:nth-child(1) .rank { color: var(--accent); }
+  tbody tr:nth-child(2) .rank { color: rgba(0,229,160,0.5); }
+  tbody tr:nth-child(3) .rank { color: rgba(0,229,160,0.3); }
+
+  .ticker {
+    font-weight: 500;
+    color: var(--heading);
+    letter-spacing: 1px;
+  }
+
+  .company-name {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  .sector-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 1px;
+  }
+
+  .metric-good { color: var(--accent); }
+  .metric-warn { color: var(--warn); }
+  .metric-bad { color: var(--danger); }
+
+  .score-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .score-bar {
+    width: 60px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .score-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  /* Methodology */
+  .methodology {
+    margin-top: 60px;
+    padding: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+  }
+
+  .methodology h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .method-item h3 {
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .method-item p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 60px;
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer p {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .disclaimer {
+    font-size: 10px;
+    color: var(--muted);
+    opacity: 0.6;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Loading state */
+  .loading {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .loading::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 16px auto 0;
+    animation: loadbar 1.5s infinite;
+  }
+
+  @keyframes loadbar {
+    0% { transform: scaleX(0); transform-origin: left; }
+    50% { transform: scaleX(1); transform-origin: left; }
+    51% { transform: scaleX(1); transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+  }
+
+  #error-msg {
+    display: none;
+    padding: 20px;
+    background: rgba(224,82,82,0.08);
+    border: 1px solid rgba(224,82,82,0.3);
+    color: var(--danger);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <h1>SWEDISH<br><span>LOW-VOL</span><br>SCREENER</h1>
+        <p>Based on Pim Van Vliet · High Returns from Low Risk</p>
+      </div>
+      <div class="meta-box">
+        <div class="last-updated">Last Updated</div>
+        <div style="font-size:14px; color:var(--text); margin-top:4px;" id="update-date">—</div>
+        <div class="live-badge">
+          <div class="live-dot"></div>
+          Auto-refreshed weekly
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="strategy-bar">
+    <div class="pill">
+      <div class="pill-icon green"></div>
+      <span>Step 1:</span> <strong>Low 12M Volatility</strong>
+    </div>
+    <div class="pill">
+      <div class="pill-icon yellow"></div>
+      <span>Step 2:</span> <strong>Positive Momentum</strong>
+    </div>
+    <div class="pill">
+      <div class="pill-icon blue"></div>
+      <span>Step 3:</span> <strong>High Net Payout Yield</strong>
+    </div>
+  </div>
+
+  <div class="stats-row" id="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Universe</div>
+      <div class="stat-value" id="stat-universe">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg Volatility (Top 10)</div>
+      <div class="stat-value green" id="stat-vol">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg Momentum</div>
+      <div class="stat-value yellow" id="stat-mom">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg Div Yield</div>
+      <div class="stat-value" id="stat-yield">—</div>
+    </div>
+  </div>
+
+  <div class="table-header">
+    <div class="table-title">Top 10 Stocks — Nasdaq OMX Stockholm</div>
+    <div class="exchange-tag">OMX · SEK</div>
+  </div>
+
+  <div id="error-msg">⚠ Could not load data.json — make sure the file exists next to index.html</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Ticker / Company</th>
+          <th>Sector</th>
+          <th class="right">12M Volatility</th>
+          <th class="right">12M Momentum</th>
+          <th class="right">Div Yield</th>
+          <th class="right">Composite Score</th>
+        </tr>
+      </thead>
+      <tbody id="stock-tbody">
+        <tr><td colspan="7"><div class="loading">Loading screener data</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="methodology">
+    <h2>How the Screener Works</h2>
+    <div class="method-grid">
+      <div class="method-item">
+        <h3>01 · Volatility Filter</h3>
+        <p>All OMX Stockholm stocks are ranked by 12-month annualised price volatility (standard deviation of daily returns × √252). The bottom 30% — the calmest stocks — are selected as the candidate universe.</p>
+      </div>
+      <div class="method-item">
+        <h3>02 · Momentum Filter</h3>
+        <p>From the low-vol pool, stocks are ranked by 12-month price return (month -12 to month -1, skipping most recent month per academic convention). The bottom 25% by momentum are eliminated to avoid value traps.</p>
+      </div>
+      <div class="method-item">
+        <h3>03 · Net Payout Yield</h3>
+        <p>Remaining candidates are scored on dividend yield plus buyback yield (change in shares outstanding). Higher net payout = better score. This rewards companies returning cash to shareholders.</p>
+      </div>
+      <div class="method-item">
+        <h3>04 · Composite Ranking</h3>
+        <p>Final composite = 40% × Vol Rank + 35% × Momentum Rank + 25% × Yield Rank. Top 10 are published. Rebalanced and auto-published every Monday at 06:00 CET via GitHub Actions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠ This screener is for educational and informational purposes only. It does not constitute financial advice. Past performance does not guarantee future results. Always do your own research before making investment decisions. Based on methodology described in <em>High Returns from Low Risk</em> by Pim van Vliet &amp; Jan de Koning (2016).
+  </div>
+
+  <footer>
+    <p>Swedish Low-Vol Screener · Auto-generated · Van Vliet Methodology</p>
+    <p>Data via Yahoo Finance · Hosted on GitHub Pages · Free</p>
+  </footer>
+</div>
+
+<script>
+// ─── Load data from data.json ───────────────────────────────────────────────
+async function loadData() {
+  try {
+    const res = await fetch('./data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('Not found');
+    const data = await res.json();
+    render(data);
+  } catch(e) {
+    // If no data.json, show demo data so you can see the design
+    render(getDemoData());
+    document.getElementById('error-msg').style.display = 'block';
+    document.getElementById('error-msg').textContent =
+      '⚠ data.json not found — showing DEMO data. Run screener.py to generate real data.';
+  }
+}
+
+// ─── Demo data (shown before first script run) ──────────────────────────────
+function getDemoData() {
+  return {
+    updated: new Date().toISOString(),
+    universe_count: 312,
+    stocks: [
+      { rank:1, ticker:"ESSITY-B", name:"Essity AB", sector:"Consumer Staples", volatility:12.4, momentum:8.2, div_yield:3.1, score:91 },
+      { rank:2, ticker:"ATCO-A",   name:"Atlas Copco A", sector:"Industrials",      volatility:13.1, momentum:11.4, div_yield:2.8, score:87 },
+      { rank:3, ticker:"CAST",     name:"Castellum AB",  sector:"Real Estate",      volatility:13.8, momentum:6.9,  div_yield:4.2, score:84 },
+      { rank:4, ticker:"INVE-B",   name:"Investor AB B", sector:"Financials",       volatility:14.2, momentum:9.7,  div_yield:2.2, score:81 },
+      { rank:5, ticker:"LATO-B",   name:"Latour B",      sector:"Industrials",      volatility:14.5, momentum:7.3,  div_yield:1.9, score:78 },
+      { rank:6, ticker:"EKTA-B",   name:"Elekta B",      sector:"Health Care",      volatility:15.1, momentum:12.1, div_yield:1.5, score:74 },
+      { rank:7, ticker:"SWED-A",   name:"Swedbank A",    sector:"Financials",       volatility:15.4, momentum:10.8, div_yield:5.1, score:71 },
+      { rank:8, ticker:"VOLV-B",   name:"Volvo B",       sector:"Industrials",      volatility:15.9, momentum:9.2,  div_yield:4.4, score:68 },
+      { rank:9, ticker:"NDA-SE",   name:"Nordea Bank",   sector:"Financials",       volatility:16.3, momentum:13.5, div_yield:5.8, score:65 },
+      { rank:10,ticker:"SEB-A",    name:"SEB A",         sector:"Financials",       volatility:16.8, momentum:11.9, div_yield:4.9, score:62 }
+    ]
+  };
+}
+
+// ─── Render ─────────────────────────────────────────────────────────────────
+function render(data) {
+  // Update date
+  const d = new Date(data.updated);
+  document.getElementById('update-date').textContent =
+    d.toLocaleDateString('sv-SE', { year:'numeric', month:'long', day:'numeric' });
+
+  // Stats
+  document.getElementById('stat-universe').textContent = data.universe_count.toLocaleString();
+  const avgVol = avg(data.stocks, 'volatility');
+  const avgMom = avg(data.stocks, 'momentum');
+  const avgYld = avg(data.stocks, 'div_yield');
+  document.getElementById('stat-vol').textContent = avgVol.toFixed(1) + '%';
+  document.getElementById('stat-mom').textContent = (avgMom > 0 ? '+' : '') + avgMom.toFixed(1) + '%';
+  document.getElementById('stat-yield').textContent = avgYld.toFixed(1) + '%';
+
+  // Table
+  const tbody = document.getElementById('stock-tbody');
+  tbody.innerHTML = data.stocks.map(s => {
+    const volClass = s.volatility < 14 ? 'metric-good' : s.volatility < 18 ? 'metric-warn' : 'metric-bad';
+    const momClass = s.momentum > 10 ? 'metric-good' : s.momentum > 0 ? 'metric-warn' : 'metric-bad';
+    const yldClass = s.div_yield > 4 ? 'metric-good' : s.div_yield > 2 ? 'metric-warn' : '';
+    const scoreWidth = s.score + '%';
+    return `
+    <tr>
+      <td><div class="rank">${String(s.rank).padStart(2,'0')}</div></td>
+      <td>
+        <div class="ticker">${s.ticker}</div>
+        <div class="company-name">${s.name}</div>
+      </td>
+      <td><span class="sector-tag">${s.sector}</span></td>
+      <td class="right"><span class="${volClass}">${s.volatility.toFixed(1)}%</span></td>
+      <td class="right"><span class="${momClass}">${s.momentum > 0 ? '+' : ''}${s.momentum.toFixed(1)}%</span></td>
+      <td class="right"><span class="${yldClass}">${s.div_yield.toFixed(1)}%</span></td>
+      <td class="right">
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-fill" style="width:${scoreWidth}"></div></div>
+          <span style="color:var(--accent); font-size:12px;">${s.score}</span>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function avg(arr, key) {
+  return arr.reduce((s, x) => s + x[key], 0) / arr.length;
+}
+
+loadData();
+</script>
+</body>
+</html>
