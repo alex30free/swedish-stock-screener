@@ -1,106 +1,106 @@
 {
-  "updated": "2026-02-19T15:12:47.969001Z",
-  "universe_count": 120,
+  "updated": "2026-02-22T20:32:08.883301Z",
+  "universe_count": 364,
   "stocks": [
     {
       "rank": 1,
       "ticker": "SWED-A",
-      "name": "Swedbank AB ser A",
+      "name": "Swedbank",
       "sector": "Financial Services",
-      "volatility": 20.28,
-      "momentum": 61.39,
-      "div_yield": 5.91,
-      "score": 89
+      "volatility": 20.35,
+      "momentum": 60.63,
+      "div_yield": 5.86,
+      "score": 90
     },
     {
       "rank": 2,
       "ticker": "TELIA",
-      "name": "Telia Company AB",
+      "name": "Telia Company",
       "sector": "Communication Services",
-      "volatility": 19.65,
-      "momentum": 35.96,
-      "div_yield": 4.59,
-      "score": 86
+      "volatility": 19.6,
+      "momentum": 36.47,
+      "div_yield": 4.56,
+      "score": 88
     },
     {
       "rank": 3,
-      "ticker": "SHB-A",
-      "name": "Svenska Handelsbanken ser. A",
-      "sector": "Financial Services",
-      "volatility": 21.67,
-      "momentum": 30.44,
-      "div_yield": 5.66,
-      "score": 74
+      "ticker": "SAGA-D",
+      "name": "Sagax D",
+      "sector": "Real Estate",
+      "volatility": 13.2,
+      "momentum": 14.92,
+      "div_yield": 10.63,
+      "score": 85
     },
     {
       "rank": 4,
-      "ticker": "AXFO",
-      "name": "Axfood AB",
-      "sector": "Consumer Defensive",
-      "volatility": 21.07,
-      "momentum": 35.91,
-      "div_yield": 2.69,
-      "score": 70
+      "ticker": "SEB-C",
+      "name": "SEB C",
+      "sector": "Financial Services",
+      "volatility": 21.48,
+      "momentum": 35.77,
+      "div_yield": 4.25,
+      "score": 82
     },
     {
       "rank": 5,
-      "ticker": "SEB-A",
-      "name": "Skandinaviska Enskilda Banken s",
-      "sector": "Financial Services",
-      "volatility": 21.78,
-      "momentum": 33.69,
-      "div_yield": 4.39,
-      "score": 68
+      "ticker": "AXFO",
+      "name": "Axfood",
+      "sector": "Consumer Defensive",
+      "volatility": 21.26,
+      "momentum": 37.53,
+      "div_yield": 2.75,
+      "score": 79
     },
     {
       "rank": 6,
-      "ticker": "INDU-C",
-      "name": "Industrivärden, AB ser. C",
+      "ticker": "ORES",
+      "name": "Öresund",
       "sector": "Financial Services",
-      "volatility": 20.08,
-      "momentum": 21.06,
-      "div_yield": 1.8,
-      "score": 65
+      "volatility": 19.98,
+      "momentum": 12.62,
+      "div_yield": 5.5,
+      "score": 78
     },
     {
       "rank": 7,
-      "ticker": "NDA-SE",
-      "name": "Nordea Bank Abp",
-      "sector": "Financial Services",
-      "volatility": 20.69,
-      "momentum": 38.26,
-      "div_yield": 0.55,
-      "score": 62
+      "ticker": "DUNI",
+      "name": "Duni",
+      "sector": "Consumer Defensive",
+      "volatility": 23.06,
+      "momentum": 18.05,
+      "div_yield": 5.15,
+      "score": 74
     },
     {
       "rank": 8,
-      "ticker": "DUNI",
-      "name": "Duni AB",
-      "sector": "Consumer Defensive",
-      "volatility": 23.13,
-      "momentum": 16.69,
-      "div_yield": 5.13,
-      "score": 59
+      "ticker": "INDU-C",
+      "name": "Industrivärden C",
+      "sector": "Financial Services",
+      "volatility": 20.08,
+      "momentum": 19.54,
+      "div_yield": 1.79,
+      "score": 73
     },
     {
       "rank": 9,
-      "ticker": "HUFV-A",
-      "name": "Hufvudstaden AB ser. A",
-      "sector": "Real Estate",
-      "volatility": 19.45,
-      "momentum": 3.25,
-      "div_yield": 2.28,
-      "score": 56
+      "ticker": "SVOL-B",
+      "name": "Svolder B",
+      "sector": "Financial Services",
+      "volatility": 24.93,
+      "momentum": 18.19,
+      "div_yield": 3.5,
+      "score": 70
     },
     {
       "rank": 10,
-      "ticker": "SCST",
-      "name": "Scandi Standard AB",
-      "sector": "Consumer Defensive",
-      "volatility": 24.12,
-      "momentum": 26.5,
-      "div_yield": 2.59,
-      "score": 55
+      "ticker": "NDA-SE",
+      "name": "Nordea Bank",
+      "sector": "Financial Services",
+      "volatility": 20.77,
+      "momentum": 37.84,
+      "div_yield": 0.54,
+      "score": 70
     }
   ]
 }
