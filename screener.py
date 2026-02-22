@@ -41,159 +41,206 @@ W_YILD                = 0.25   # Composite weight: yield
 OUTPUT_FILE           = "data.json"
 
 # ─────────────────────────────────────────────────────────────────────────────
-# FULL SWEDISH STOCK UNIVERSE
-# Large Cap (~1B EUR+), Mid Cap (150M-1B EUR), Small Cap (<150M EUR)
-# All listed on Nasdaq OMX Stockholm
-# Format: Yahoo Finance ticker with .ST suffix
+# FULL SWEDISH STOCK UNIVERSE — 372 tickers
+# Source: Nasdaq OMX Stockholm (Large + Mid + Small Cap)
+# Ticker list sourced from Swedish_Stocks_Yahoo.csv — all Yahoo Finance .ST tickers
 # ─────────────────────────────────────────────────────────────────────────────
 
-TICKERS = [
-    # ── LARGE CAP ────────────────────────────────────────────────────────────
-    "ABB.ST",       # ABB Ltd
-    "ALFA.ST",      # Alfa Laval
-    "ASSA-B.ST",    # Assa Abloy B
-    "ATCO-A.ST",    # Atlas Copco A
-    "ATCO-B.ST",    # Atlas Copco B
-    "AZN.ST",       # AstraZeneca
-    "BOL.ST",       # Boliden
-    "ERIC-B.ST",    # Ericsson B
-    "ESSITY-B.ST",  # Essity B
-    "EVO.ST",       # Evolution Gaming
-    "EQT.ST",       # EQT AB
-    "GETI-B.ST",    # Getinge B
-    "HM-B.ST",      # H&M B
-    "HEXA-B.ST",    # Hexagon B
-    "INDU-C.ST",    # Industrivärden C
-    "INVE-B.ST",    # Investor B
-    "KINV-B.ST",    # Kinnevik B
-    "LATO-B.ST",    # Latour B
-    "NDA-SE.ST",    # Nordea Bank
-    "NIBE-B.ST",    # NIBE Industrier B
-    "SAND.ST",      # Sandvik
-    "SCA-B.ST",     # SCA B
-    "SEB-A.ST",     # SEB A
-    "SHB-A.ST",     # Handelsbanken A
-    "SKF-B.ST",     # SKF B
-    "SWED-A.ST",    # Swedbank A
-    "TELIA.ST",     # Telia Company
-    "VOLV-B.ST",    # Volvo B
-    "SAAB-B.ST",    # Saab B
-    "ELUX-B.ST",    # Electrolux B
-    "SSAB-A.ST",    # SSAB A
-    "SSAB-B.ST",    # SSAB B
-    "ALIV-SDB.ST",  # Aliv SDB
-    "EMBRAC-B.ST",  # Embracer Group B
-
-    # ── MID CAP ──────────────────────────────────────────────────────────────
-    "AAK.ST",       # AAK AB
-    "BALD-B.ST",    # Balders B
-    "BEIA-B.ST",    # Beijer Alma B
-    "BEIJ-B.ST",    # Beijer Ref B
-    "BUFAB.ST",     # Bufab
-    "CAST.ST",      # Castellum
-    "CLAS-B.ST",    # Clas Ohlson B
-    "COOR.ST",      # Coor Service
-    "DIOS.ST",      # Diös Fastigheter
-    "DUNI.ST",      # Duni AB
-    "EKTA-B.ST",    # Elekta B
-    "FABG.ST",      # Fabege
-    "GARO.ST",      # Garo AB
-    "HOLM-B.ST",    # Holmen B
-    "HUFV-A.ST",    # Hufvudstaden A
-    "HUSQ-B.ST",    # Husqvarna B
-    "ICA.ST",       # ICA Gruppen
-    "INTRUM.ST",    # Intrum
-    "JM.ST",        # JM AB
-    "LIFCO-B.ST",   # Lifco B
-    "LUND-B.ST",    # Lundbergföretagen B
-    "NENT-B.ST",    # NENT Group B
-    "NOLA-B.ST",    # Nolato B
-    "NOTE.ST",      # NOTE AB
-    "PEAB-B.ST",    # Peab B
-    "PNDX-B.ST",    # Pandox B
-    "PRIC-B.ST",    # Pricer B
-    "SAGAX-B.ST",   # Sagax B
-    "SECU-B.ST",    # Securitas B
-    "SKISTAR-B.ST", # SkiStar B
-    "SWEC-B.ST",    # Sweco B
-    "SYSR.ST",      # Systemair
-    "THULE.ST",     # Thule Group
-    "TREL-B.ST",    # Trelleborg B
-    "VBG-B.ST",     # VBG Group B
-    "VITR.ST",      # Vitrolife
-    "WALL-B.ST",    # Wallenstam B
-    "WIHL.ST",      # Wihlborgs
-    "XANO-B.ST",    # Xano Industri B
-    "BURE.ST",      # Bure Equity
-    "CATE.ST",      # Catena
-    "ENEA.ST",      # Enea AB
-    "HEXPOL-B.ST",  # Hexpol B
-    "NEWA-B.ST",    # New Wave B
-    "NP3.ST",       # NP3 Fastigheter
-    "TROAX.ST",     # Troax Group
-    "BRG-B.ST",     # Bergman & Beving B
-    "DORO.ST",      # Doro AB
-    "KABE-B.ST",    # Kabe Group B
-    "MEKO.ST",      # Mekonomen
-    "OEM-B.ST",     # OEM International B
-    "RATO-B.ST",    # Ratos B
-    "SCST.ST",      # Scandi Standard
-    "SDIP-B.ST",    # Sdiptech B
-
-    # ── SMALL CAP ────────────────────────────────────────────────────────────
-    "ADDV-B.ST",    # Addvise Group B
-    "ALLIGO-B.ST",  # Alligo B
-    "AMBEA.ST",     # Ambea AB
-    "ARJO-B.ST",    # Arjo B
-    "AXFO.ST",      # Axfood
-    "BEWI.ST",      # BEWi ASA
-    "BOOL.ST",      # Boolean
-    "BRAV.ST",      # Bravida Holding
-    "CDON.ST",      # CDON AB
-    "CRED-A.ST",    # Creades A
-    "ELAN-B.ST",    # Elanders B
-    "ELTEL.ST",     # Eltel AB
-    "EWRK.ST",      # eWork Group
-    "FING-B.ST",    # Fingerprint Cards B
-    "HANSA.ST",     # Hansa Biopharma
-    "HEBA-B.ST",    # Heba Fastighets B
-    "HTRO.ST",      # Hoist Finance
-    "INDT.ST",      # Indutrade
-    "ITAB.ST",      # ITAB Shop Concept
-    "KNOW-IT.ST",   # Know IT
-    "LAMM-B.ST",    # Lammhults Design B
-    "MIPS.ST",      # MIPS AB
-    "MSAB-B.ST",    # MSAB B
-    "NAXS.ST",      # NAXS Nordic
-    "NEWA-A.ST",    # New Wave A
-    "NOLA-A.ST",    # Nolato A
-    "ONCO.ST",      # Oncopeptides
-    "OREX.ST",      # Orexo AB
-    "PLAZ-B.ST",    # Platzer Fastigheter B
-    "PNDX-A.ST",    # Pandox A
-    "PROB.ST",      # Probi AB
-    "PROF-B.ST",    # Profilgruppen B
-    "RAIL.ST",      # Railcare Group
-    "SAGA-A.ST",    # Sagax A
-    "SENS.ST",      # Sensys Gatso Group
-    "SIVERS.ST",    # Sivers Semiconductors
-    "SOBI.ST",      # Swedish Orphan Biovitrum
-    "SOLT.ST",      # Soltech Energy Sweden
-    "SSM.ST",       # SSM Holding
-    "TRAD.ST",      # Tradedoubler
-    "VEFAB.ST",     # VEF AB
-    "VIGS.ST",      # Vigs
-    "VPLAY-B.ST",   # Viaplay B
-    "WISE.ST",      # Wise Group
-    "XANO-B.ST",    # Xano Industri B
-    "YUBICO.ST",    # Yubico AB
-    "NTEK.ST",      # Nordic Tech
-    "FPAR-A.ST",    # Fastpartner A
-    "LOGI-B.ST",    # Logistea B
-    "FLAT-B.ST",    # Flat Capital B
-    "PRIC-A.ST",    # Pricer A
-    "SKIS-B.ST",    # Skistar B
+# Format: (Company Name, Yahoo Finance Ticker)
+_TICKER_MAP = [
+    ("AAK", "AAK.ST"),                              ("ABB", "ABB.ST"),
+    ("AFRY", "AFRY.ST"),                            ("AQ Group", "AQ.ST"),
+    ("AcadeMedia", "ACAD.ST"),                      ("Acast", "ACAST.ST"),
+    ("Acrinova B", "ACRI-B.ST"),                    ("Actic Group", "ATIC.ST"),
+    ("Active Biotech", "ACTI.ST"),                  ("AddLife", "ALIF-B.ST"),
+    ("Addnode", "ANOD-B.ST"),                       ("Addtech", "ADDT-B.ST"),
+    ("Alfa Laval", "ALFA.ST"),                      ("Alimak", "ALIG.ST"),
+    ("Alleima", "ALLEI.ST"),                        ("Alligator Bioscience", "ATORX.ST"),
+    ("Alligo", "ALLIGO-B.ST"),                      ("Alvotech SDB", "ALVO-SDB.ST"),
+    ("Ambea", "AMBEA.ST"),                          ("Annehem Fastigheter", "ANNE-B.ST"),
+    ("Anoto", "ANOT.ST"),                           ("Apotea", "APOTEA.ST"),
+    ("Arctic Paper", "ARP.ST"),                     ("Arion Banki", "ARION-SDB.ST"),
+    ("Arjo", "ARJO-B.ST"),                          ("Arla Plast", "ARPL.ST"),
+    ("Ascelia Pharma", "ACE.ST"),                   ("Asker Healthcare", "ASKER.ST"),
+    ("Asmodee", "ASMDEE-B.ST"),                     ("Assa Abloy", "ASSA-B.ST"),
+    ("AstraZeneca", "AZN.ST"),                      ("Atlas Copco B", "ATCO-B.ST"),
+    ("Atrium Ljungberg", "ATRLJ-B.ST"),             ("Attendo", "ATT.ST"),
+    ("Autoliv", "ALIV-SDB.ST"),                     ("Avanza Bank", "AZA.ST"),
+    ("Axfood", "AXFO.ST"),                          ("B3 Consulting", "B3.ST"),
+    ("BE Group", "BEGR.ST"),                        ("BHG Group", "BHG.ST"),
+    ("BICO Group", "BICO.ST"),                      ("BTS Group", "BTS-B.ST"),
+    ("Bactiguard", "BACTI-B.ST"),                   ("Balco Group", "BALCO.ST"),
+    ("Beijer Alma", "BEIA-B.ST"),                   ("Beijer Ref", "BEIJ-B.ST"),
+    ("Bergman & Beving", "BERG-B.ST"),              ("Berner Industrier", "BERNER-B.ST"),
+    ("Besqab", "BESQAB.ST"),                        ("Besqab Pref B", "BESQAB-PREF-B.ST"),
+    ("Betsson", "BETS-B.ST"),                       ("Better Collective", "BETCO.ST"),
+    ("Bilia", "BILI-A.ST"),                         ("Billerud", "BILL.ST"),
+    ("BioArctic", "BIOA-B.ST"),                     ("BioGaia", "BIOG-B.ST"),
+    ("Bioinvent", "BINV.ST"),                       ("Björn Borg", "BORG.ST"),
+    ("Boliden", "BOL.ST"),                          ("Bonava B", "BONAV-B.ST"),
+    ("Bonesupport", "BONEX.ST"),                    ("Bong Ljungdahl", "BONG.ST"),
+    ("Boozt", "BOOZT.ST"),                          ("Boule Diagnostics", "BOUL.ST"),
+    ("Bravida", "BRAV.ST"),                         ("Brinova Fastigheter", "BRIN-B.ST"),
+    ("Bufab", "BUFAB.ST"),                          ("Bulten", "BULTEN.ST"),
+    ("Bure Equity", "BURE.ST"),                     ("Byggmax", "BMAX.ST"),
+    ("Byggmästare AJ Ahlström", "AJA-B.ST"),        ("C-RAD", "CRAD-B.ST"),
+    ("CTEK", "CTEK.ST"),                            ("CTT Systems", "CTT.ST"),
+    ("Camurus", "CAMX.ST"),                         ("Cantargia", "CANTA.ST"),
+    ("Carasent", "CARA.ST"),                        ("Castellum", "CAST.ST"),
+    ("Catella B", "CAT-B.ST"),                      ("Catena", "CATE.ST"),
+    ("Catena Media", "CTM.ST"),                     ("Cavotec", "CCC.ST"),
+    ("CellaVision", "CEVI.ST"),                     ("Cibus Nordic", "CIBUS.ST"),
+    ("Cinclus Pharma", "CINPHA.ST"),                ("Cint Group", "CINT.ST"),
+    ("Clas Ohlson", "CLAS-B.ST"),                   ("Cloetta", "CLA-B.ST"),
+    ("CoinShares", "CS.ST"),                        ("Concejo B", "CNCJO-B.ST"),
+    ("Coor Service Management", "COOR.ST"),         ("Corem Property B", "CORE-B.ST"),
+    ("Corem Property D", "CORE-D.ST"),              ("Creades", "CRED-A.ST"),
+    ("Dedicare", "DEDI.ST"),                        ("Diös Fastigheter", "DIOS.ST"),
+    ("Dometic", "DOM.ST"),                          ("Duni", "DUNI.ST"),
+    ("Duroc", "DURC-B.ST"),                         ("Dustin Group", "DUST.ST"),
+    ("Dynavox Group", "DYVOX.ST"),                  ("EQL Pharma", "EQL.ST"),
+    ("EQT", "EQT.ST"),                              ("Eastnine", "EAST.ST"),
+    ("Egetis Therapeutics", "EGTX.ST"),             ("Elanders", "ELAN-B.ST"),
+    ("Electrolux B", "ELUX-B.ST"),                  ("Electrolux Professional B", "EPRO-B.ST"),
+    ("Elekta", "EKTA-B.ST"),                        ("Elon", "ELON.ST"),
+    ("Eltel", "ELTEL.ST"),                          ("Embracer", "EMBRAC-B.ST"),
+    ("Enad Global 7", "EG7.ST"),                    ("Enea", "ENEA.ST"),
+    ("Engcon", "ENGCON-B.ST"),                      ("Eniro", "ENRO.ST"),
+    ("Enity", "ENITY.ST"),                          ("Eolus", "EOLU-B.ST"),
+    ("Ependion", "EPEN.ST"),                        ("Epiroc B", "EPI-B.ST"),
+    ("Episurf Medical", "EPIS-B.ST"),               ("Ericsson B", "ERIC-B.ST"),
+    ("Essity B", "ESSITY-B.ST"),                    ("Evolution", "EVO.ST"),
+    ("FM Mattsson", "FMM-B.ST"),                    ("Fabege", "FABG.ST"),
+    ("Fagerhult", "FAG.ST"),                        ("Fasadgruppen", "FG.ST"),
+    ("Fast Balder", "BALD-B.ST"),                   ("Fastator", "FASTAT.ST"),
+    ("Fastighetsbolag Emilshus Pref", "EMIL-PREF.ST"), ("Fastighetsbolaget Emilshus", "EMIL-B.ST"),
+    ("Fastpartner A", "FPAR-A.ST"),                 ("Fastpartner D", "FPAR-D.ST"),
+    ("Fenix Outdoor", "FOI-B.ST"),                  ("Ferronordic", "FNM.ST"),
+    ("Fingerprint Cards", "FING-B.ST"),             ("Flerie", "FLERIE.ST"),
+    ("Formpipe Software", "FPIP.ST"),               ("Fortinova", "FNOVA-B.ST"),
+    ("G5 Entertainment", "G5EN.ST"),                ("Garo", "GARO.ST"),
+    ("Genova Property", "GPG.ST"),                  ("Gentoo Media", "G2M.ST"),
+    ("Getinge", "GETI-B.ST"),                       ("Green Landscaping", "GREEN.ST"),
+    ("Gruvaktiebolaget Viscaria", "VISC.ST"),        ("Gränges", "GRNG.ST"),
+    ("HAKI Safety B", "HAKI-B.ST"),                 ("HMS Networks", "HMS.ST"),
+    ("Hacksaw", "HACK.ST"),                         ("Handelsbanken B", "SHB-B.ST"),
+    ("Hansa Biopharma", "HNSA.ST"),                 ("Hanza", "HANZA.ST"),
+    ("Havsfrun Investment", "HAV-B.ST"),             ("Heba", "HEBA-B.ST"),
+    ("Hemnet", "HEM.ST"),                           ("Hennes & Mauritz", "HM-B.ST"),
+    ("Hexagon", "HEXA-B.ST"),                       ("Hexatronic", "HTRO.ST"),
+    ("Hexpol", "HPOL-B.ST"),                        ("Hoist Finance", "HOFI.ST"),
+    ("Holmen B", "HOLM-B.ST"),                      ("Hufvudstaden A", "HUFV-A.ST"),
+    ("Humana", "HUM.ST"),                           ("Humble Group", "HUMBLE.ST"),
+    ("Husqvarna B", "HUSQ-B.ST"),                   ("IRLAB Therapeutics", "IRLAB-A.ST"),
+    ("ITAB Shop Concept", "ITAB.ST"),               ("Image Systems", "IS.ST"),
+    ("Immunovia", "IMMNOV.ST"),                     ("Industrivärden C", "INDU-C.ST"),
+    ("Indutrade", "INDT.ST"),                       ("Infant Bacterial", "IBT-B.ST"),
+    ("Infrea", "INFREA.ST"),                        ("Inission", "INISS-B.ST"),
+    ("Instalco", "INSTAL.ST"),                      ("Intea Fastigheter B", "INTEA-B.ST"),
+    ("Intea Fastigheter D", "INTEA-D.ST"),          ("International Petroleum", "IPCO.ST"),
+    ("Intrum", "INTRUM.ST"),                        ("Investor B", "INVE-B.ST"),
+    ("Invisio", "IVSO.ST"),                         ("Inwido", "INWI.ST"),
+    ("Isofol Medical", "ISOFOL.ST"),                ("JM", "JM.ST"),
+    ("John Mattson", "JOMA.ST"),                    ("K-Fast Holding", "KFAST-B.ST"),
+    ("K2A", "K2A-B.ST"),                            ("K2A Knaust & Andersson Pref", "K2A-PREF.ST"),
+    ("KDventures", "KDV-B.ST"),                     ("Kabe", "KABE-B.ST"),
+    ("Karnell Group", "KARNEL-B.ST"),               ("Karnov", "KAR.ST"),
+    ("Kinnevik B", "KINV-B.ST"),                    ("KlaraBo", "KLARA-B.ST"),
+    ("KnowIT", "KNOW.ST"),                          ("Lagercrantz", "LAGR-B.ST"),
+    ("Lammhults Design", "LAMM-B.ST"),              ("Latour", "LATO-B.ST"),
+    ("Lifco", "LIFCO-B.ST"),                        ("Lime Technologies", "LIME.ST"),
+    ("Linc", "LINC.ST"),                            ("Lindab", "LIAB.ST"),
+    ("Logistea B", "LOGI-B.ST"),                    ("Loomis", "LOOMIS.ST"),
+    ("Lundbergföretagen", "LUND-B.ST"),             ("Lundin Gold", "LUG.ST"),
+    ("Lundin Mining", "LUMI.ST"),                   ("MEKO", "MEKO.ST"),
+    ("Maha Capital", "MAHA-A.ST"),                  ("Malmbergs Elektriska", "MEAB-B.ST"),
+    ("Mangold", "MANG.ST"),                         ("MedCap", "MCAP.ST"),
+    ("Medicover", "MCOV-B.ST"),                     ("Medivir", "MVIR.ST"),
+    ("Mendus", "IMMU.ST"),                          ("Meren Energy", "MER.ST"),
+    ("Micro Systemation", "MSAB-B.ST"),             ("Midsona B", "MSON-B.ST"),
+    ("Mildef Group", "MILDEF.ST"),                  ("Mips", "MIPS.ST"),
+    ("Moberg Pharma", "MOB.ST"),                    ("Modern Times Group B", "MTG-B.ST"),
+    ("Moment Group", "MOMENT.ST"),                  ("Momentum Group", "MMGR-B.ST"),
+    ("Morrow Bank", "MORROW.ST"),                   ("Munters", "MTRS.ST"),
+    ("Mycronic", "MYCR.ST"),                        ("NAXS", "NAXS.ST"),
+    ("NCAB Group", "NCAB.ST"),                      ("NCC B", "NCC-B.ST"),
+    ("NIBE Industrier", "NIBE-B.ST"),               ("NOBA Bank", "NOBA.ST"),
+    ("NOTE", "NOTE.ST"),                            ("NP3 Fastigheter", "NP3.ST"),
+    ("Nanologica", "NICA.ST"),                      ("Nederman", "NMAN.ST"),
+    ("Nelly Group", "NELLY.ST"),                    ("Neobo Fastigheter", "NEOBO.ST"),
+    ("Net Insight", "NETI-B.ST"),                   ("Netel Holding", "NETEL.ST"),
+    ("New Wave", "NEWA-B.ST"),                      ("Nilörngruppen", "NIL-B.ST"),
+    ("Nivika Fastigheter", "NIVI-B.ST"),             ("Nobia", "NOBI.ST"),
+    ("Nokia", "NOKIA-SEK.ST"),                      ("Nolato", "NOLA-B.ST"),
+    ("Nordea Bank", "NDA-SE.ST"),                   ("Nordisk Bergteknik", "NORB-B.ST"),
+    ("Nordnet", "SAVE.ST"),                         ("Norion Bank", "NORION.ST"),
+    ("Novotek", "NTEK-B.ST"),                       ("Nyfosa", "NYF.ST"),
+    ("OEM International", "OEM-B.ST"),              ("Oncopeptides", "ONCO.ST"),
+    ("Orexo", "ORX.ST"),                            ("Orrön Energy", "ORRON.ST"),
+    ("Ovzon", "OVZON.ST"),                          ("PION Group", "PION-B.ST"),
+    ("Pandox", "PNDX-B.ST"),                        ("Peab", "PEAB-B.ST"),
+    ("Pierce Group", "PIERCE.ST"),                  ("Platzer Fastigheter", "PLAZ-B.ST"),
+    ("PowerCell", "PCELL.ST"),                      ("Precise Biometrics", "PREC.ST"),
+    ("Prevas", "PREV-B.ST"),                        ("Pricer", "PRIC-B.ST"),
+    ("Prisma Properties", "PRISMA.ST"),             ("Proact IT", "PACT.ST"),
+    ("ProfilGruppen", "PROF-B.ST"),                 ("Profoto", "PRFO.ST"),
+    ("Q-Linea", "QLINEA.ST"),                       ("Qliro", "QLIRO.ST"),
+    ("Railcare", "RAIL.ST"),                        ("Ratos B", "RATO-B.ST"),
+    ("RaySearch Laboratories", "RAY-B.ST"),         ("Rejlers", "REJL-B.ST"),
+    ("Revolutionrace", "RVRC.ST"),                  ("Rottneros", "RROS.ST"),
+    ("Rusta", "RUSTA.ST"),                          ("Röko", "ROKO-B.ST"),
+    ("SCA B", "SCA-B.ST"),                          ("SEB C", "SEB-C.ST"),
+    ("SKF B", "SKF-B.ST"),                          ("SSAB B", "SSAB-B.ST"),
+    ("Saab", "SAAB-B.ST"),                          ("Sagax B", "SAGA-B.ST"),
+    ("Sagax D", "SAGA-D.ST"),                       ("Samhällsbyggnadsbolag B", "SBB-B.ST"),
+    ("Samhällsbyggnadsbolag D", "SBB-D.ST"),        ("Sampo", "SAMPO-SDB.ST"),
+    ("Sandvik", "SAND.ST"),                         ("Saniona", "SANION.ST"),
+    ("Scandi Standard", "SCST.ST"),                 ("Scandic Hotels", "SHOT.ST"),
+    ("Sdiptech", "SDIP-B.ST"),                      ("Seafire", "SEAF.ST"),
+    ("Sectra", "SECT-B.ST"),                        ("Securitas", "SECU-B.ST"),
+    ("Sedana Medical", "SEDANA.ST"),                ("Sensys Gatso", "SGG.ST"),
+    ("Senzime", "SEZI.ST"),                         ("Sinch", "SINCH.ST"),
+    ("SinterCast", "SINT.ST"),                      ("Sivers Semiconductors", "SIVE.ST"),
+    ("Skanska", "SKA-B.ST"),                        ("SkiStar", "SKIS-B.ST"),
+    ("Sleep Cycle", "SLEEP.ST"),                    ("Softronic", "SOF-B.ST"),
+    ("Solid Försäkring", "SFAB.ST"),                ("Starbreeze B", "STAR-B.ST"),
+    ("Stendörren Fastigheter", "STEF-B.ST"),        ("Stenhus Fastigheter", "SFAST.ST"),
+    ("Stillfront", "SF.ST"),                        ("Stockwik Förvaltning", "STWK.ST"),
+    ("Stora Enso A", "STE-A.ST"),                   ("Stora Enso R", "STE-R.ST"),
+    ("Storskogen", "STOR-B.ST"),                    ("Studsvik", "SVIK.ST"),
+    ("Sveafastigheter", "SVEAF.ST"),                ("Svedbergs Group", "SVED-B.ST"),
+    ("Svolder B", "SVOL-B.ST"),                     ("Sweco B", "SWEC-B.ST"),
+    ("Swedbank", "SWED-A.ST"),                      ("Swedish Logistic Property", "SLP-B.ST"),
+    ("Swedish Orphan Biovitrum", "SOBI.ST"),        ("SynAct Pharma", "SYNACT.ST"),
+    ("Synsam", "SYNSAM.ST"),                        ("Systemair", "SYSR.ST"),
+    ("TF Bank", "TFBANK.ST"),                       ("Tele2 B", "TEL2-B.ST"),
+    ("Telia Company", "TELIA.ST"),                  ("Thule", "THULE.ST"),
+    ("TietoEVRY", "TIETOS.ST"),                     ("Tobii", "TOBII.ST"),
+    ("Traction", "TRAC-B.ST"),                      ("TradeDoubler", "TRAD.ST"),
+    ("Transtema", "TRANS.ST"),                      ("Traton", "8TRA.ST"),
+    ("Trelleborg", "TREL-B.ST"),                    ("Trianon", "TRIAN-B.ST"),
+    ("Troax Group", "TROAX.ST"),                    ("Truecaller", "TRUE-B.ST"),
+    ("VBG Group", "VBG-B.ST"),                      ("VEF", "VEFAB.ST"),
+    ("VNV Global", "VNV.ST"),                       ("Verisure", "VSURE.ST"),
+    ("Vestum", "VESTUM.ST"),                        ("Viaplay B", "VPLAY-B.ST"),
+    ("Vicore Pharma", "VICO.ST"),                   ("Vimian Group", "VIMIAN.ST"),
+    ("Vitec Software", "VIT-B.ST"),                 ("Vitrolife", "VITR.ST"),
+    ("Viva Wine", "VIVA.ST"),                       ("Vivesto", "VIVE.ST"),
+    ("Volati", "VOLO.ST"),                          ("Volvo B", "VOLV-B.ST"),
+    ("Volvo Car", "VOLCAR-B.ST"),                   ("Wall to Wall", "WTW-A.ST"),
+    ("Wallenstam", "WALL-B.ST"),                    ("Wihlborgs Fastigheter", "WIHL.ST"),
+    ("Wise Group", "WISE.ST"),                      ("Wästbygg", "WBGR-B.ST"),
+    ("XANO Industri", "XANO-B.ST"),                 ("Xbrane Biopharma", "XBRANE.ST"),
+    ("Xspray Pharma", "XSPRAY.ST"),                 ("Xvivo Perfusion", "XVIVO.ST"),
+    ("Yubico", "YUBICO.ST"),                        ("eWork", "EWRK.ST"),
+    ("mySafety", "SAFETY-B.ST"),                    ("Öresund", "ORES.ST"),
 ]
+
+# Flat ticker list used by the screener loop
+TICKERS = [t for _, t in _TICKER_MAP]
+
+# Name lookup: ticker → company name
+TICKER_NAMES = {t: n for n, t in _TICKER_MAP}
 
 # ─────────────────────────────────────────────────────────────────────────────
 # HELPERS
@@ -240,8 +287,8 @@ def get_div_yield(ticker_info: dict) -> float:
 def get_sector(info: dict) -> str:
     return info.get('sector') or info.get('industry') or 'Unknown'
 
-def get_name(info: dict, ticker: str) -> str:
-    return info.get('shortName') or info.get('longName') or ticker
+
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MAIN SCREENER
@@ -250,7 +297,7 @@ def get_name(info: dict, ticker: str) -> str:
 def run_screener():
     print(f"\n{'='*65}")
     print(f"  Van Vliet Low-Vol Screener — OMX Stockholm")
-    print(f"  Universe: {len(TICKERS)} tickers (Large + Mid + Small Cap)")
+    print(f"  Universe: {len(TICKERS)} tickers (Large + Mid + Small Cap — sourced from Swedish_Stocks_Yahoo.csv)")
     print(f"  Running at: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"{'='*65}\n")
 
