@@ -2,12 +2,12 @@ name: Weekly Stock Screener
 
 # ─────────────────────────────────────────────────────────
 # WHEN TO RUN:
-#   Every Monday at 06:00 CET (05:00 UTC)
+#   Every Friday at 6:30 CET
 #   You can also trigger manually from GitHub Actions tab
 # ─────────────────────────────────────────────────────────
 on:
   schedule:
-    - cron: '0 5 * * 1'   # Every Monday at 05:00 UTC
+    - cron: "30 17 * * 5"
   workflow_dispatch:        # Allows manual trigger from GitHub UI
 
 jobs:
