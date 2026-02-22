@@ -287,8 +287,9 @@ def get_div_yield(ticker_info: dict) -> float:
 def get_sector(info: dict) -> str:
     return info.get('sector') or info.get('industry') or 'Unknown'
 
-
-
+def get_name(info: dict, ticker: str) -> str:
+    # Prefer the known name from our CSV universe, fall back to Yahoo Finance info
+    return TICKER_NAMES.get(ticker) or info.get('shortName') or info.get('longName') or ticker
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MAIN SCREENER
