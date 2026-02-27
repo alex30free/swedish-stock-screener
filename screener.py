@@ -50,7 +50,7 @@ OUTPUT_FILE           = "data.json"
 from fetch_swedish_tickers import get_tickers
 
 # Flat ticker list used by the screener loop
-TICKER_NAMES = {t: n for _, t in TICKERS}
+TICKER = {t: n for _, t in TICKERS}
 
 # Name lookup: ticker → company name
 TICKER_NAMES = {t: n for _, t in TICKERS}
