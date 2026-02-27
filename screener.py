@@ -49,11 +49,8 @@ OUTPUT_FILE           = "data.json"
 # Format: (Company Name, Yahoo Finance Ticker)
 from fetch_swedish_tickers import get_tickers
 
-# Flat ticker list used by the screener loop
-TICKERS = {t: n for _, t in TICKERS}
-
-# Name lookup: ticker → company name
-TICKER_NAMES = {t: n for _, t in TICKERS}
+TICKERS = get_tickers(verbose=True)
+TICKER_NAMES = {t: n for n, t in TICKERS}
 
 # ─────────────────────────────────────────────────────────────────────────────
 # HELPERS
