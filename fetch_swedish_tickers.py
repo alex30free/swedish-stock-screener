@@ -89,31 +89,11 @@ def _scrape_page(url: str, session: requests.Session) -> list[tuple[str, str]]:
 
     return results
 
-
 def get_tickers(
-    max_pages: int = 5,
+    max_pages: int = 2,
     verbose: bool = False,
     dedupe_companies: bool = True,
 ) -> list[tuple[str, str]]:
-    """
-    Fetch all Nasdaq Stockholm stocks from stockanalysis.com.
-
-    Parameters
-    ----------
-    max_pages : int
-        Safety cap on number of pages to scrape (site currently has 2 pages of
-        ~500 stocks each, so 5 is more than enough).
-    verbose : bool
-        Print progress.
-    dedupe_companies : bool
-        If True (default), keep only one share class per company.
-        Prefers B shares over A shares (more liquid), keeps first occurrence
-        otherwise.  Set to False to include all share classes (A, B, D, SDB…).
-
-    Returns
-    -------
-    list of (company_name, yahoo_ticker) tuples — ready to use in screener.py
-    """
     session  = requests.Session()
     all_rows: list[tuple[str, str]] = []
     page     = 1
@@ -130,14 +110,8 @@ def get_tickers(
                 print(f"  Page {page} failed: {e}")
             break
 
-    if not rows or len(rows) < 50:
-        break  # No more data
-
-# Stop if we got the same count as previous page (site recycling results)
-if page > 1 and len(rows) == prev_count:
-    break
-
-prev_count = len(rows)
+        if not rows:
+            break
 
         all_rows.extend(rows)
 
@@ -145,7 +119,7 @@ prev_count = len(rows)
             print(f"  Page {page}: {len(rows)} tickers found (total so far: {len(all_rows)})")
 
         page += 1
-        time.sleep(0.8)   # polite delay between pages
+        time.sleep(0.8)
 
     if verbose:
         print(f"\n  Raw tickers scraped: {len(all_rows)}")
@@ -156,7 +130,6 @@ prev_count = len(rows)
             print(f"  After deduplication (one per company): {len(all_rows)}")
 
     return all_rows
-
 
 def _deduplicate(rows: list[tuple[str, str]]) -> list[tuple[str, str]]:
     """
