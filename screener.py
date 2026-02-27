@@ -118,7 +118,7 @@ def run_screener():
     records = []
     skipped = 0
 
-  for i, (name, ticker) in enumerate(TICKERS):
+    for i, (name, ticker) in enumerate(TICKERS):
         print(f"[{i+1:>3}/{len(TICKERS)}] {ticker:<20}", end="", flush=True)
 
         try:
