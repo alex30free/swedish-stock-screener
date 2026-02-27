@@ -49,7 +49,7 @@ OUTPUT_FILE           = "data.json"
 # Format: (Company Name, Yahoo Finance Ticker)
 from fetch_swedish_tickers import get_tickers
 
-TICKERS = get_tickers(verbose=True)
+TICKERS = get_tickers(verbose=True, max_pages=2)
 TICKER_NAMES = {t: n for n, t in TICKERS}
 
 # ─────────────────────────────────────────────────────────────────────────────
