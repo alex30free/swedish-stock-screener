@@ -130,8 +130,14 @@ def get_tickers(
                 print(f"  Page {page} failed: {e}")
             break
 
-        if not rows:
-            break  # No more data
+    if not rows or len(rows) < 50:
+        break  # No more data
+
+# Stop if we got the same count as previous page (site recycling results)
+if page > 1 and len(rows) == prev_count:
+    break
+
+prev_count = len(rows)
 
         all_rows.extend(rows)
 
