@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-20T18:03:19.874091Z",
+  "updated": "2026-03-27T18:13:47.964201Z",
   "universe_count": 443,
   "stocks": [
     {
@@ -8,8 +8,8 @@
       "name": "Swedbank AB (publ)",
       "sector": "Financial Services",
       "volatility": 20.32,
-      "momentum": 50.36,
-      "div_yield": 6.24,
+      "momentum": 51.29,
+      "div_yield": 6.64,
       "score": 92
     },
     {
@@ -17,29 +17,29 @@
       "ticker": "TELIA",
       "name": "Telia Company AB (publ)",
       "sector": "Communication Services",
-      "volatility": 19.42,
-      "momentum": 38.63,
-      "div_yield": 4.41,
-      "score": 91
+      "volatility": 19.65,
+      "momentum": 42.41,
+      "div_yield": 4.32,
+      "score": 90
     },
     {
       "rank": 3,
       "ticker": "KAPIAB",
       "name": "KallebÃ¤ck Property Invest AB (publ)",
       "sector": "Real Estate",
-      "volatility": 12.22,
-      "momentum": 23.54,
-      "div_yield": 5.91,
-      "score": 90
+      "volatility": 12.27,
+      "momentum": 25.03,
+      "div_yield": 5.94,
+      "score": 89
     },
     {
       "rank": 4,
       "ticker": "ORES",
       "name": "Investment AB Ãresund (publ)",
       "sector": "Financial Services",
-      "volatility": 19.93,
-      "momentum": 23.14,
-      "div_yield": 5.17,
+      "volatility": 20.1,
+      "momentum": 28.13,
+      "div_yield": 5.15,
       "score": 86
     },
     {
@@ -47,29 +47,29 @@
       "ticker": "SEB-A",
       "name": "Skandinaviska Enskilda Banken AB (publ)",
       "sector": "Financial Services",
-      "volatility": 21.78,
-      "momentum": 25.94,
-      "div_yield": 4.78,
-      "score": 83
+      "volatility": 21.92,
+      "momentum": 25.51,
+      "div_yield": 4.98,
+      "score": 81
     },
     {
       "rank": 6,
       "ticker": "DNBO",
       "name": "DNB Bank ASA",
       "sector": "Unknown",
-      "volatility": 25.14,
-      "momentum": 33.25,
+      "volatility": 25.13,
+      "momentum": 33.26,
       "div_yield": 8.04,
-      "score": 80
+      "score": 79
     },
     {
       "rank": 7,
       "ticker": "AXFO",
       "name": "Axfood AB (publ)",
       "sector": "Consumer Defensive",
-      "volatility": 21.65,
-      "momentum": 47.34,
-      "div_yield": 2.88,
+      "volatility": 21.84,
+      "momentum": 48.6,
+      "div_yield": 2.86,
       "score": 79
     },
     {
@@ -77,30 +77,30 @@
       "ticker": "SOLNA",
       "name": "Solnaberg Property AB (publ)",
       "sector": "Real Estate",
-      "volatility": 20.32,
-      "momentum": 10.18,
-      "div_yield": 7.02,
-      "score": 79
+      "volatility": 20.0,
+      "momentum": 7.75,
+      "div_yield": 7.21,
+      "score": 77
     },
     {
       "rank": 9,
       "ticker": "CLA-B",
       "name": "Cloetta AB (publ)",
       "sector": "Consumer Defensive",
-      "volatility": 24.72,
-      "momentum": 86.27,
-      "div_yield": 2.79,
-      "score": 75
+      "volatility": 24.65,
+      "momentum": 94.7,
+      "div_yield": 2.76,
+      "score": 76
     },
     {
       "rank": 10,
-      "ticker": "SCST",
-      "name": "Scandi Standard AB (publ)",
-      "sector": "Consumer Defensive",
-      "volatility": 24.78,
-      "momentum": 56.72,
-      "div_yield": 2.33,
-      "score": 71
+      "ticker": "PEAB-B",
+      "name": "Peab AB (publ)",
+      "sector": "Industrials",
+      "volatility": 25.21,
+      "momentum": 32.61,
+      "div_yield": 3.55,
+      "score": 72
     }
   ]
 }
