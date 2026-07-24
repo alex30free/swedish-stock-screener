@@ -1,106 +1,106 @@
 {
-  "updated": "2026-07-17T18:39:00.171914Z",
-  "universe_count": 442,
+  "updated": "2026-07-24T18:59:00.221390Z",
+  "universe_count": 439,
   "stocks": [
     {
       "rank": 1,
       "ticker": "SWED-A",
       "name": "Swedbank AB (publ)",
       "sector": "Financial Services",
-      "volatility": 16.82,
-      "momentum": 55.13,
-      "div_yield": 5.69,
-      "score": 95
+      "volatility": 17.05,
+      "momentum": 59.22,
+      "div_yield": 5.51,
+      "score": 94
     },
     {
       "rank": 2,
       "ticker": "TELIA",
       "name": "Telia Company AB (publ)",
       "sector": "Communication Services",
-      "volatility": 19.38,
-      "momentum": 44.14,
-      "div_yield": 4.43,
-      "score": 87
+      "volatility": 19.6,
+      "momentum": 45.32,
+      "div_yield": 4.6,
+      "score": 86
     },
     {
       "rank": 3,
       "ticker": "ORES",
       "name": "Investment AB Ãresund (publ)",
       "sector": "Financial Services",
-      "volatility": 19.86,
-      "momentum": 32.34,
-      "div_yield": 5.61,
-      "score": 85
+      "volatility": 19.96,
+      "momentum": 28.27,
+      "div_yield": 5.57,
+      "score": 83
     },
     {
       "rank": 4,
-      "ticker": "KAPIAB",
-      "name": "KallebÃ¤ck Property Invest AB (publ)",
-      "sector": "Real Estate",
-      "volatility": 10.75,
-      "momentum": 11.6,
-      "div_yield": 5.94,
-      "score": 82
-    },
-    {
-      "rank": 5,
       "ticker": "SEB-A",
       "name": "Skandinaviska Enskilda Banken AB (publ)",
       "sector": "Financial Services",
-      "volatility": 18.86,
-      "momentum": 24.86,
-      "div_yield": 3.95,
-      "score": 82
+      "volatility": 18.9,
+      "momentum": 23.89,
+      "div_yield": 3.89,
+      "score": 80
+    },
+    {
+      "rank": 5,
+      "ticker": "KAPIAB",
+      "name": "KallebÃ¤ck Property Invest AB (publ)",
+      "sector": "Real Estate",
+      "volatility": 10.79,
+      "momentum": 10.15,
+      "div_yield": 5.91,
+      "score": 79
     },
     {
       "rank": 6,
       "ticker": "INVE-B",
       "name": "Investor AB (publ)",
       "sector": "Financial Services",
-      "volatility": 17.3,
-      "momentum": 40.71,
-      "div_yield": 1.41,
-      "score": 78
+      "volatility": 17.26,
+      "momentum": 46.73,
+      "div_yield": 1.39,
+      "score": 77
     },
     {
       "rank": 7,
-      "ticker": "INDU-A",
-      "name": "AB IndustrivÃ¤rden (publ)",
-      "sector": "Financial Services",
-      "volatility": 19.92,
-      "momentum": 54.71,
-      "div_yield": 1.66,
-      "score": 78
+      "ticker": "DNBO",
+      "name": "DNB Bank ASA",
+      "sector": "Unknown",
+      "volatility": 20.24,
+      "momentum": 14.35,
+      "div_yield": 8.04,
+      "score": 76
     },
     {
       "rank": 8,
-      "ticker": "SOLNA",
-      "name": "Solnaberg Property AB (publ)",
-      "sector": "Real Estate",
-      "volatility": 16.13,
-      "momentum": 3.63,
-      "div_yield": 6.96,
+      "ticker": "INDU-A",
+      "name": "AB IndustrivÃ¤rden (publ)",
+      "sector": "Financial Services",
+      "volatility": 19.97,
+      "momentum": 61.97,
+      "div_yield": 1.63,
       "score": 76
     },
     {
       "rank": 9,
-      "ticker": "DNBO",
-      "name": "DNB Bank ASA",
-      "sector": "Unknown",
-      "volatility": 20.38,
-      "momentum": 8.74,
-      "div_yield": 8.04,
-      "score": 75
+      "ticker": "SOLNA",
+      "name": "Solnaberg Property AB (publ)",
+      "sector": "Real Estate",
+      "volatility": 16.16,
+      "momentum": 1.43,
+      "div_yield": 6.93,
+      "score": 73
     },
     {
       "rank": 10,
       "ticker": "SHB-B",
       "name": "Svenska Handelsbanken AB (publ)",
       "sector": "Financial Services",
-      "volatility": 23.62,
-      "momentum": 29.48,
-      "div_yield": 3.55,
-      "score": 72
+      "volatility": 23.64,
+      "momentum": 31.34,
+      "div_yield": 3.48,
+      "score": 71
     }
   ]
 }
